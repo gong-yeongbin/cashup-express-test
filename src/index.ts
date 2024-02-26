@@ -3,8 +3,15 @@ import { _query } from "./database/read";
 import "dotenv/config";
 import campaignRoute from "./route/campaign.route";
 import process from "process";
+import cookieParser from "cookie-parser";
+import cors from "cors";
 
 const app: Express = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(cors({ origin: "*", credentials: true }));
 
 app.use("/campaign", campaignRoute);
 
